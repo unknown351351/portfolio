@@ -1,0 +1,184 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Portfolio</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+body {
+    scroll-behavior: smooth;
+}
+
+/* NAVBAR */
+header {
+    background: #111;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+}
+
+nav a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+/* SECTIONS */
+section {
+    padding: 80px 20px;
+    min-height: 100vh;
+}
+
+/* HOME */
+#home {
+    background: linear-gradient(to right, #00adb5, #222);
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* PROJECT */
+#projects {
+    background: #f4f4f4;
+}
+
+/* TODO APP */
+.todo-box {
+    max-width: 400px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.todo-box input {
+    width: 70%;
+    padding: 10px;
+}
+
+.todo-box button {
+    padding: 10px;
+    background: #00adb5;
+    color: white;
+    border: none;
+}
+
+ul {
+    list-style: none;
+    margin-top: 15px;
+}
+
+li {
+    background: #eee;
+    padding: 10px;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* CONTACT */
+#contact {
+    background: #222;
+    color: white;
+    text-align: center;
+}
+
+/* ANIMATION */
+.fade {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.5s;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media(max-width: 600px) {
+    nav {
+        display: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h3>MyPortfolio</h3>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>0.
+</header>
+
+<section id="home" class="fade">
+    <div>
+        <h1>Hello, I'm Manjunath.K</h1>
+        <p>Interactive Web Developer</p>
+    </div>
+</section>
+
+<section id="projects" class="fade">
+    <h2 style="text-align:center;">My Interactive Project</h2>
+
+    <!-- TODO APP -->
+    <div class="todo-box">
+        <h3>📝 Todo App</h3>
+        <input type="text" id="taskInput" placeholder="Enter task">
+        <button onclick="addTask()">Add</button>
+
+        <ul id="taskList"></ul>
+    </div>
+</section>
+
+<section id="contact" class="fade">
+    <h2>Contact Me</h2>
+    <p>Email: your@email.com</p>
+</section>
+
+<script>
+// TODO APP FUNCTION
+function addTask() {
+    const input = document.getElementById("taskInput");
+    const task = input.value;
+
+    if(task === "") return;
+
+    const li = document.createElement("li");
+    li.innerHTML = task + " <button onclick='this.parentElement.remove()'>X</button>";
+
+    document.getElementById("taskList").appendChild(li);
+    input.value = "";
+}
+
+// SCROLL ANIMATION
+const fades = document.querySelectorAll(".fade");
+
+window.addEventListener("scroll", () => {
+    fades.forEach(el => {
+        if(el.getBoundingClientRect().top < window.innerHeight - 100) {
+            el.classList.add("show");
+        }
+    });
+});
+</script>
+
+</body>
+</html>
